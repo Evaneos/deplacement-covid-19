@@ -1,11 +1,14 @@
 module.exports = {
 	root: true,
 	env: {
-        node: true,
-        browser: true,
+    node: true,
+    browser: true,
 	},
 	extends: ["standard"],
 	rules: {
+		"no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+		"comma-dangle": [2, "always-multiline"],
+		"no-var": 2,
 	},
 	overrides: [
 		{
