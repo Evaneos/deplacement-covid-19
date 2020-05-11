@@ -31,23 +31,13 @@
 <body>
     <header role="banner" class="wrapper">
         <picture>
-            <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)">
-            <img src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité." class="logo" role="presentation" aria-hidden="true">
+            <!-- <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)"> -->
+            <img src="/logo-evaneos.svg" alt="Evaneos" class="logo" role="presentation" aria-hidden="true">
         </picture>
 
         <div>
-            <h1 class="flex flex-wrap">
-                <span class="covid-title">
-                    COVID-19
-                </span>
-                <span class="covid-subtitle">
-                    Générateur d'attestation de&nbsp;déplacement&nbsp;dérogatoire
-                </span>
-            </h1>
             <p class="text-alert">
-                Les données saisies sont stockées exclusivement sur votre téléphone ou votre ordinateur. Aucune information n'est collectée par le Ministère de l'Intérieur.
-                L'attestation pdf générée contient un QR Code. Ce code-barres graphique permet de lire les informations portées dans votre attestation au moment de leur saisie. 
-                Il peut être déchiffré à l'aide de tout type de lecteur de QR code générique.
+                Description placeholder
             </p>
         </div>
     </header>
@@ -57,8 +47,63 @@
     <div class="wrapper">
 
         <form id="form-profile" accept-charset="UTF-8">
-            <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
-            <p class="text-alert">Tous les champs sont obligatoires.</p>
+            <h2 class="titre-2">Fill in this form to generate a voucher</h2>
+            <p class="text-alert">Every fields are mandatory.</p>
+
+            <!-- div*3.form-group>label+div.input-group.align-items-center>input.form-control[type=text] -->
+
+            <fieldset name="traveler-information">
+                <legend>Traveler information</legend>
+                <div class="form-group">
+                    <label for="full-name">Full name</label>
+                    <div class="input-group"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label for="language">Language</label>
+                    <div class="input-group"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label for="country-origin">Country of origin</label>
+                    <div class="input-group">
+                        <select type="text" class="form-control">
+                            <option selected disabled>Select a country of origin</option>
+                            <option value="fr">France</option>
+                            <option value="it">Italy</option>
+                            <option value="es">Spain</option>
+                            <option value="de">Germany</option>
+                            <option value="be">Belgium</option>
+                            <option value="nl">Netherland</option>
+                            <option value="ch">Swiss</option>
+                            <option value="at">Austria</option>
+                            <option value="us">United States of America</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset name="dossier-information">
+                <legend>Dossier information</legend>
+                <div class="form-group">
+                    <label for="dossier-id">Dossier ID</label>
+                    <div class="input-group align-items-center"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <div class="input-group align-items-center"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label for="departure-date">Initial arrival date</label>
+                    <div class="input-group align-items-center"><input type="date" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label for="departure-date">Initial departure date</label>
+                    <div class="input-group align-items-center"><input type="date" class="form-control"></div>
+                </div>
+            </fieldset>
+            <fieldset name="voucher-information"></fieldset>
+            <fieldset name="agency-information"></fieldset>
             
             <div class="form-group">
                 <label for="field-firstname" id="field-firstname-label">Prénom</label>
@@ -259,33 +304,15 @@
             </div>
         </form>
     </div>
-    <div class="">
-        <p class="github">
-            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">GitHub</a>.
-        </p>
-        <p class="label-mi">
-            Ministère de l'Intérieur - DNUM - SDIT
-        </p> 
-        <picture class="center">
-          <source srcset="/logo_dnum_dark.svg" media="(prefers-color-scheme: dark)">
-            <img class="center" src="/logo_dnum.svg" alt="logo dnum">
-        </picture>
-    </div>
     </main>
     <footer role="contentinfo" class="main-footer">
-        <div class="footer-links">
-            <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
-            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>
-            <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Informations du gouvernement sur le Covid-19</a> 
-            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000" title="Numéro vert - appel gratuit depuis un poste fixe en France">0 800 130 000</a></div>
-            <p class="footer-line" id="version"></p>
-        </div>
+        <div class="footer-links"></div>
     </footer> 
 
     <div class="alert  alert-info  d-none" id="update-alert">
-        Une nouvelle version est disponible. Cliquer sur le bouton pour l'obtenir.
+        A new version is available, click this button to fetch it.
         <p class="text-right">
-            <button id="reload-btn" class="btn  btn-info">Mettre à jour</button>
+            <button id="reload-btn" class="btn  btn-info">Update</button>
         </p>
     </div>
 

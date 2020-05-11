@@ -251,39 +251,6 @@ input:valid+span:after {
   width: 50%;
 }
 
-.covid-title {
-  display: flex;
-  align-items: center;
-  padding: 0.3em;
-  font-family: 'marianne-regular', Arial, Helvetica, sans-serif;
-  font-size: 0.50em;
-  color: #ffffff;
-  background-color: #000191;
-}
-
-@media (prefers-color-scheme: dark) {
-  .covid-title {
-    background: #2929ff;
-  }
-}
-
-@media (min-width: 992px) {
-  .covid-title {
-    flex-grow: 0;
-  }
-}
-
-.covid-subtitle {
-  display: flex;
-  align-items: center;
-  font-size: 0.40em;
-  padding: 0.3em;
-  background-color: #e1000f;
-  text-transform:uppercase ;
-  color: #ffffff;
-  flex-grow: 1;
-}
-
 .text-alert{
   text-align: left;
   color: #000000;
