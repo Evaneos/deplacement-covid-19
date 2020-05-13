@@ -28,7 +28,9 @@
 
             <p class="lead">
                 This service is intended for Evaneos agencies. It aims to make
-                easier to create vouchers as PDF documents for our travelers.
+                easier to create vouchers as PDF documents for our travelers. A
+                voucher is valid only if uploaded by the agency from
+                <em>Evaneos Travel Suite</em> or <em>PRO</em>
             </p>
 
             <hr />
@@ -36,7 +38,7 @@
 
         <main class="container" role="main">
             <form id="information" accept-charset="UTF-8">
-                <p class="alert alert-info">
+                <p class="alert alert-secondary">
                     Fill in this form to generate a voucher<br />
                     <small>Every fields are mandatory.</small>
                 </p>
@@ -89,6 +91,97 @@
                         </div>
                     </fieldset>
 
+                    <fieldset class="col-6" name="agency-information">
+                        <legend>Agency information</legend>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="agency-name">Agency name</label>
+                                <div class="input-group align-items-center">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="agency-name"
+                                        id="agency-name"
+                                        autocomplete="organization"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label for="agency-logo"
+                                    >Logo <small>(optional)</small></label
+                                >
+                                <div class="input-group align-items-center">
+                                    <input
+                                        type="file"
+                                        class="form-control"
+                                        name="logo-name"
+                                        id="logo-name"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="agency-address-address1">Address</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="agency-address-address1"
+                                id="agency-address-address1"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="agency-address-address2"
+                                id="agency-address-address2"
+                            />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="agency-address-city">City</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="agency-address-city"
+                                    id="agency-address-city"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="agency-address-zip"
+                                    >Postal code</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="agency-address-zip"
+                                    id="agency-address-zip"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="agency-address-country"
+                                    >Country</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="agency-address-country"
+                                    id="agency-address-country"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <hr />
+                <div class="row">
                     <fieldset class="col-6" name="dossier-information">
                         <legend>Dossier information</legend>
                         <div class="form-group">
@@ -144,83 +237,6 @@
                             </div>
                         </div>
                     </fieldset>
-                </div>
-
-                <div class="row">
-                    <fieldset class="col-6" name="agency-information">
-                        <legend>Agency information</legend>
-                        <div class="form-group">
-                            <label for="agency-name">Agency name</label>
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="agency-name"
-                                    id="agency-name"
-                                    autocomplete="organization"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="agency-address-address1">Address</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="agency-address-address1"
-                                id="agency-address-address1"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="agency-address-address2"
-                                >Address 2</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="agency-address-address2"
-                                id="agency-address-address2"
-                            />
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="agency-address-city">City</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="agency-address-city"
-                                    id="agency-address-city"
-                                    required
-                                />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="agency-address-zip"
-                                    >Postal code</label
-                                >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="agency-address-zip"
-                                    id="agency-address-zip"
-                                    required
-                                />
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="agency-address-country"
-                                    >Country</label
-                                >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="agency-address-city"
-                                    id="agency-address-city"
-                                    required
-                                />
-                            </div>
-                        </div>
-                    </fieldset>
 
                     <fieldset class="col-6" name="voucher-information">
                         <legend>Voucher information</legend>
@@ -249,13 +265,23 @@
                                     <option selected disabled
                                         >Select a currency</option
                                     >
-                                    <option value="EUR">Euro</option>
-                                    <option value="GBP">British pound</option>
-                                    <option value="USD">US dollar</option>
-                                    <option value="CAD">Canadian dollar</option>
-                                    <option value="CHF">Swiss franc</option>
-                                    <option value="SEK">Swedish krone</option>
-                                    <option value="DKK">Danish krone</option>
+                                    <option value="EUR">Euro (EUR)</option>
+                                    <option value="GBP"
+                                        >British pound (GBP)</option
+                                    >
+                                    <option value="USD">US dollar (USD)</option>
+                                    <option value="CAD"
+                                        >Canadian dollar (CAD)</option
+                                    >
+                                    <option value="CHF"
+                                        >Swiss franc (CHF)</option
+                                    >
+                                    <option value="SEK"
+                                        >Swedish krone (SEK)</option
+                                    >
+                                    <option value="DKK"
+                                        >Danish krone (DKK)</option
+                                    >
                                 </select>
                             </div>
                         </div>
