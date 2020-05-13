@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './main.css';
 import './check-updates';
 import './icons';
-import pdfBase from './certificate.pdf';
+import pdfBase from './voucher-template-fr.pdf';
 
 function getFormData(form) {
     const data = new FormData(form);
@@ -29,8 +29,12 @@ async function generateVoucherPdf(formData) {
     });
 
     const pdfDoc = await getDocumentTemplate();
+    console.log(pdfDoc);
+    
     const page1 = pdfDoc.getPages()[0];
+    console.log(page1);
 
+    const { width, height } = page1.getSize();
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const drawText = (text, x, y, size = 11) => {
         page1.drawText(text, { x, y, size, font });
@@ -38,6 +42,8 @@ async function generateVoucherPdf(formData) {
 
     drawText('Generated at:', 464, 150, 7);
     drawText(`${creationDate}, ${creationHour}`, 455, 144, 7);
+
+    page1.dr
 
     const pdfBytes = await pdfDoc.save();
 
