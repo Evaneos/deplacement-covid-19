@@ -7,26 +7,25 @@ import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
 import FRA from './FRA.txt';
+import USA from './USA.txt';
 
-let template;
-const client = new XMLHttpRequest();
-client.open('GET', FRA);
-client.onreadystatechange = function () {
-    template = client.responseText;
+const defaultMarket = 'other';
+const marketMap = {
+    fr: { template: FRA, locale: 'fr-FR', dateFormat: 'jj/mm/aaaa' },
+    us: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
+    other: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
 };
-client.send();
 
-function getFormData(form) {
-    const data = new FormData(form);
-    return Array.from(data).reduce(
-        (entries, entry) => {
-            return { ...entries, [entry[0].replace(/-/g, '_')]: entry[1] };
-        },
-        { creation_date: new Date().toLocaleDateString('en-US') }
-    );
+function serializeFormData(formData, market) {
+    return Array.from(formData).reduce((entries, entry) => {
+        if (entry[0].match(/-date/)) {
+            entry[1] = new Date(entry[1]).toLocaleDateString(market.locale);
+        }
+        return { ...entries, [entry[0].replace(/-/g, '_')]: entry[1] };
+    }, {});
 }
 
-async function drawLogo(pdf, page, logo) {
+async function drawLogo(pdf, page, logo, margin) {
     if (logo instanceof File === false) {
         return;
     }
@@ -46,13 +45,12 @@ async function drawLogo(pdf, page, logo) {
     // const { height, width } = embeddedLogo;
 
     page.drawImage(embeddedLogo, {
-        x: 60,
-        y: 60,
-        scale,
+        x: page.getWidth() - embeddedLogo.width - margin,
+        y: page.getHeight() - embeddedLogo.height - margin,
     });
 }
 
-async function generateVoucherPdf(formData, creationDate) {
+async function generateVoucherPdf(market, template, formData, creationDate) {
     const pdf = await PDFDocument.create();
     const page = pdf.addPage();
 
@@ -60,14 +58,15 @@ async function generateVoucherPdf(formData, creationDate) {
     const margin = 60;
 
     if (formData.logo instanceof File) {
-        await drawLogo(pdf, page, formData.logo);
+        await drawLogo(pdf, page, formData.logo, margin);
     }
 
     page.moveTo(margin, page.getHeight() - margin);
-    const text = sprintf(template, { ...formData, creationDate }).replace(
-        /\n/g,
-        ' \n'
-    );
+    const text = sprintf(template, {
+        ...formData,
+        creationDate,
+        date_format: market.dateFormat,
+    }).replace(/\n/g, ' \n');
 
     page.drawText(text, {
         maxWidth: page.getWidth() - margin * 2,
@@ -112,8 +111,31 @@ form.addEventListener('submit', async (submitEvent) => {
         minute: '2-digit',
     });
 
-    const formData = getFormData(submitEvent.target);
-    const pdfBlob = await generateVoucherPdf(formData, creationDate);
+    const formData = new FormData(submitEvent.target);
+    const countryOrigin = formData.get('country-origin');
+
+    let market = marketMap[countryOrigin];
+
+    if (market === undefined) {
+        console.error(
+            sprintf(
+                'Market %s does not exists, default to %s',
+                countryOrigin,
+                defaultMarket
+            )
+        );
+        market = marketMap[defaultMarket];
+    }
+
+    const data = serializeFormData(formData, market);
+    const template = await (await fetch(market.template)).text();
+
+    const pdfBlob = await generateVoucherPdf(
+        market,
+        template,
+        data,
+        creationDate
+    );
     downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
 });

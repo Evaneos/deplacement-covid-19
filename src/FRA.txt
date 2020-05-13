@@ -12,15 +12,16 @@
 
 En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolé.
 
-Destination: %(destination)s
-Départ initial (jj/mm/aaaa) : %(departure_date)s
+  - Destination: %(destination)s
+  - Départ initialement prévu le %(departure_date)s
 
 Vous bénéficiez donc d’un bon à-valoir au sein de notre agence, aux conditions suivantes :
-  • Nom de l’agence locale : %(agency_name)s
-  • N° de dossier : %(dossier_id)d
-  • Montant du voucher : %(amount)d %(currency)s
-  • Valable jusqu’au (jj/mm/aaaa) : %(departure_date)s
+  - Nom de l’agence locale : %(agency_name)s
+  - N° de dossier : %(dossier_id)d
+  - Montant du voucher : %(amount)d %(currency)s
+  - Valable jusqu’au %(departure_date)s
 
 Ce voucher n’est pas cessible mais peut-être utilisé en une ou plusieurs fois.
+Les dates sont au format %(date_format)s.
 
 %(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite
