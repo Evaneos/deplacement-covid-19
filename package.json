@@ -4,7 +4,7 @@
     "description": "Agency form to generate voucher for deferred travels",
     "main": "certificate.js",
     "scripts": {
-        "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/voucher-generator} ./src/index.html",
+        "start": "VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/voucher-generator} ./src/index.html",
         "build": "parcel build --public-url ${PUBLIC_URL:-/voucher-generator} ./src/index.html ./src/robots.txt",
         "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/voucher-generator} react-snap",
         "preserve": "npm run build",
@@ -24,10 +24,6 @@
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/plugin-transform-runtime": "^7.9.0",
-        "babel-eslint": "^10.1.0",
-        "copy-and-watch": "^0.1.4",
-        "cross-env": "^7.0.2",
-        "npm-run-all": "^4.1.5",
         "parcel-bundler": "^1.12.4",
         "parcel-plugin-sw-cache": "^0.3.1",
         "postcss-current-selector": "0.0.3",

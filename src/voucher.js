@@ -1,12 +1,12 @@
-import { PDFDocument, StandardFonts } from 'pdf-lib';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import './main.css';
 import './check-updates';
 import './icons';
+import './main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { PDFDocument, StandardFonts } from 'pdf-lib';
+import { sprintf } from 'sprintf-js';
 
 import FRA from './FRA.txt';
-import { sprintf } from 'sprintf-js';
 
 let template;
 const client = new XMLHttpRequest();
@@ -26,25 +26,57 @@ function getFormData(form) {
     );
 }
 
-async function generateVoucherPdf(formData, creationDate) {
-    const pdfDoc = await PDFDocument.create();
-    const page = pdfDoc.addPage();
+async function drawLogo(pdf, page, logo) {
+    if (logo instanceof File === false) {
+        return;
+    }
 
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    let embedMethod;
+    switch (logo.type) {
+        case 'image/png':
+            embedMethod = 'embedPng';
+            break;
+        case 'image/jpg':
+            embedMethod = 'embedJpeg';
+            break;
+    }
+    const buffer = await logo.arrayBuffer();
+    const embeddedLogo = await pdf[embedMethod](buffer);
+
+    // const { height, width } = embeddedLogo;
+
+    page.drawImage(embeddedLogo, {
+        x: 60,
+        y: 60,
+        scale,
+    });
+}
+
+async function generateVoucherPdf(formData, creationDate) {
+    const pdf = await PDFDocument.create();
+    const page = pdf.addPage();
+
+    const font = await pdf.embedFont(StandardFonts.Helvetica);
     const margin = 60;
 
-    page.moveTo(margin, page.getHeight() - margin);
+    if (formData.logo instanceof File) {
+        await drawLogo(pdf, page, formData.logo);
+    }
 
-    const text = sprintf(template, { ...formData, creationDate }).replace(/\n/g, ' \n')
+    page.moveTo(margin, page.getHeight() - margin);
+    const text = sprintf(template, { ...formData, creationDate }).replace(
+        /\n/g,
+        ' \n'
+    );
 
     page.drawText(text, {
         maxWidth: page.getWidth() - margin * 2,
         size: 12,
         lineHeight: 15,
-        font
+        font,
     });
 
-    const pdfBytes = await pdfDoc.save();
+    const pdfBytes = await pdf.save();
 
     return new Blob([pdfBytes], { type: 'application/pdf' });
 }
@@ -81,8 +113,6 @@ form.addEventListener('submit', async (submitEvent) => {
     });
 
     const formData = getFormData(submitEvent.target);
-    console.log(formData);
-
     const pdfBlob = await generateVoucherPdf(formData, creationDate);
     downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
