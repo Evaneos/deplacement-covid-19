@@ -4,46 +4,45 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './main.css';
 import './check-updates';
 import './icons';
-import pdfBase from './voucher-template-fr.pdf';
+
+import FRA from './FRA.txt';
+import { sprintf } from 'sprintf-js';
+
+let template;
+const client = new XMLHttpRequest();
+client.open('GET', FRA);
+client.onreadystatechange = function () {
+    template = client.responseText;
+};
+client.send();
 
 function getFormData(form) {
     const data = new FormData(form);
-    return Array.from(data).reduce((entries, entry) => {
-        return { ...entries, [entry[0]]: entry };
-    }, {});
-}
-
-async function getDocumentTemplate() {
-    const existingPdfBytes = await fetch(pdfBase).then((res) =>
-        res.arrayBuffer()
+    return Array.from(data).reduce(
+        (entries, entry) => {
+            return { ...entries, [entry[0].replace(/-/g, '_')]: entry[1] };
+        },
+        { creation_date: new Date().toLocaleDateString('en-US') }
     );
-    return PDFDocument.load(existingPdfBytes);
 }
 
-async function generateVoucherPdf(formData) {
-    const now = new Date();
-    const creationDate = now.toLocaleDateString('en-US');
-    const creationHour = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+async function generateVoucherPdf(formData, creationDate) {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage();
 
-    const pdfDoc = await getDocumentTemplate();
-    console.log(pdfDoc);
-    
-    const page1 = pdfDoc.getPages()[0];
-    console.log(page1);
-
-    const { width, height } = page1.getSize();
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const drawText = (text, x, y, size = 11) => {
-        page1.drawText(text, { x, y, size, font });
-    };
+    const margin = 60;
 
-    drawText('Generated at:', 464, 150, 7);
-    drawText(`${creationDate}, ${creationHour}`, 455, 144, 7);
+    page.moveTo(margin, page.getHeight() - margin);
 
-    page1.dr
+    const text = sprintf(template, { ...formData, creationDate }).replace(/\n/g, ' \n')
+
+    page.drawText(text, {
+        maxWidth: page.getWidth() - margin * 2,
+        size: 12,
+        lineHeight: 15,
+        font
+    });
 
     const pdfBytes = await pdfDoc.save();
 
@@ -81,7 +80,10 @@ form.addEventListener('submit', async (submitEvent) => {
         minute: '2-digit',
     });
 
-    const pdfBlob = await generateVoucherPdf(getFormData());
+    const formData = getFormData(submitEvent.target);
+    console.log(formData);
+
+    const pdfBlob = await generateVoucherPdf(formData, creationDate);
     downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
 });
