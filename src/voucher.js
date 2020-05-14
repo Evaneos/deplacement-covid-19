@@ -30,11 +30,6 @@ async function drawLogo(pdf, page, logo, margin) {
         return;
     }
 
-    if (logo.type in ['image/png', 'image/jpg'] === false) {
-        console.error('Logo file format can not be processed, must be `png` or `jpg`, skipping');
-        return;
-    }
-
     let embedMethod;
     switch (logo.type) {
         case 'image/png':
