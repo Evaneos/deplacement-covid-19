@@ -7,11 +7,29 @@ import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
 import FRA from './FRA.txt';
+import ITA from './ITA.txt';
+import ESP from './ESP.txt';
+import GER from './GER.txt';
+import BEL from './BEL.txt';
+import NLD from './NLD.txt';
+import CHE from './CHE.txt';
+import AUT from './AUT.txt';
+import GBR from './GBR.txt';
+import CAN from './CAN.txt';
 import USA from './USA.txt';
 
 const defaultMarket = 'other';
 const marketMap = {
     fr: { template: FRA, locale: 'fr-FR', dateFormat: 'jj/mm/aaaa' },
+    it: { template: ITA, locale: 'it-IT', dateFormat: 'jj/mm/aaa' },
+    es: { template: ESP, locale: 'es-ES', dateFormat: 'jj/mm/aaa' },
+    de: { template: GER, locale: 'de-DE', dateFormat: 'jj/mm/aaa' },
+    be: { template: BEL, locale: 'fr-BE', dateFormat: 'jj/mm/aaa' },
+    nl: { template: NLD, locale: 'nl-NL', dateFormat: 'jj/mm/aaa' },
+    ch: { template: CHE, locale: 'fr-CH', dateFormat: 'jj/mm/aaa' },
+    at: { template: AUT, locale: 'de-AT', dateFormat: 'jj/mm/aaa' },
+    uk: { template: GBR, locale: 'en-GB', dateFormat: 'jj/mm/aaa' },
+    ca: { template: CAN, locale: 'en-CA', dateFormat: 'mm/dd/yyyy' },
     us: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
     other: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
 };
@@ -36,6 +54,7 @@ async function drawLogo(pdf, page, logo, margin) {
             embedMethod = 'embedPng';
             break;
         case 'image/jpg':
+        case 'image/jpeg':
             embedMethod = 'embedJpeg';
             break;
     }
