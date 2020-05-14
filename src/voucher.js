@@ -6,16 +6,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
-import FRA from './templates/FRA.txt';
-import ITA from './templates/ITA.txt';
-import ESP from './templates/ESP.txt';
-import GER from './templates/GER.txt';
-import BEL from './templates/BEL.txt';
-import NLD from './templates/NLD.txt';
-import CHE from './templates/CHE.txt';
 import AUT from './templates/AUT.txt';
-import GBR from './templates/GBR.txt';
+import BEL from './templates/BEL.txt';
 import CAN from './templates/CAN.txt';
+import CHE from './templates/CHE.txt';
+import ESP from './templates/ESP.txt';
+import FRA from './templates/FRA.txt';
+import GBR from './templates/GBR.txt';
+import GER from './templates/GER.txt';
+import ITA from './templates/ITA.txt';
+import NLD from './templates/NLD.txt';
 import USA from './templates/USA.txt';
 
 const defaultMarket = 'other';
@@ -43,7 +43,7 @@ function serializeFormData(market, formData) {
     }, {});
 }
 
-async function drawLogo(pdf, page, logo, margin) {
+async function drawLogo(pdf, logo, margin) {
     if (logo instanceof File === false) {
         return;
     }
@@ -68,47 +68,52 @@ async function drawLogo(pdf, page, logo, margin) {
     const factor = Math.max(width / size, height / size);
     const [tWidth, tHeight] = [width / factor, height / factor];
 
-    page.drawImage(embeddedLogo, {
-        x: page.getWidth() - tWidth - margin,
-        y: page.getHeight() - tHeight - margin,
-        width: tWidth,
-        height: tHeight,
-    });
+    for (let page of pdf.getPages()) {
+        page.drawImage(embeddedLogo, {
+            x: page.getWidth() - tWidth - margin,
+            y: page.getHeight() - tHeight - margin,
+            width: tWidth,
+            height: tHeight,
+        });
+    }
 }
 
-async function drawText(pdf, page, market, formData, margin) {
+async function drawText(pdf, market, formData, margin) {
     const font = await pdf.embedFont(StandardFonts.Helvetica);
     const template = await (await fetch(market.template)).text();
 
-    const text = sprintf(template, {
+    const doc = sprintf(template, {
         ...formData,
         creation_date: new Date().toLocaleDateString(market.locale),
         date_format: market.dateFormat,
-    }).replace(/\n/g, ' \n');
+    }).replace(/\n/g, ' \n').split('---');
 
-    page.moveTo(margin, page.getHeight() - margin);
-    page.drawText(text, {
-        maxWidth: page.getWidth() - margin * 2,
-        size: 12,
-        lineHeight: 15,
-        font,
-    });
+    for (let text of doc) {
+        const page = pdf.addPage();
+        page.drawText(text.trim(), {
+            x: margin,
+            y: page.getHeight() - margin,
+            maxWidth: page.getWidth() - margin * 2,
+            size: 12,
+            lineHeight: 15,
+            font,
+        });
+    }
 }
 
 async function generateVoucherPdf(market, formData) {
     const pdf = await PDFDocument.create();
-    const page = pdf.addPage();
     const margin = 60;
+    
+    await drawText(pdf, market, formData, margin);
 
     if (formData.logo instanceof File && formData.logo.size > 0) {
         try {
-            await drawLogo(pdf, page, formData.logo, margin);
+            await drawLogo(pdf, formData.logo, margin);
         } catch (error) {
             console.error(error);
         }
     }
-
-    await drawText(pdf, page, market, formData, margin);
 
     return new Blob([await pdf.save()], { type: 'application/pdf' });
 }

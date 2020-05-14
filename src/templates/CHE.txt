@@ -27,3 +27,35 @@ Ce voucher n’est pas cessible mais peut-être utilisé en une ou plusieurs foi
 Les dates sont au format %(date_format)s.
 
 %(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite.
+
+--- 
+
+!!!!TO BE TRANSLATED!!!!
+
+%(agency_address_city)s, the %(creation_date)s
+
+%(agency_name)s
+%(agency_address_address1)s
+%(agency_address_address2)s
+%(agency_address_zip)s %(agency_address_city)s
+%(agency_address_country)s
+
+
+
+%(honorific_prefix)s %(full_name)s,
+
+Due to the outbreak of COVID-19, you were unable to make your trip with our local agency and we are sorry.
+
+  - Destination: %(destination)s
+  - Initial departure : %(departure_date)s
+
+You will therefore benefit from a voucher in our agency under the following conditions:
+  - Name of the local agency: %(agency_name)s
+  - File No.: %(dossier_id)d
+  - Voucher amount: %(amount)d %(currency)s
+  - Valid until : %(validity_date)s
+
+This voucher is non-transferable but can be used in one or several times.
+Dates are formatted %(date_format)s.
+
+%(agency_name)s and all its team thank you for your trust and hope to exchange with you as soon as possible.
