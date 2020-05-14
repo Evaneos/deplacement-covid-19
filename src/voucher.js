@@ -110,6 +110,13 @@ function notifyDownload() {
     }, 6000);
 }
 
+function fetchFormParamFromLocation(location) {
+    return location.search
+        .replace('?', '')
+        .split('&')
+        .map((p) => p.split('='))
+}
+
 const form = document.getElementById('information');
 form.addEventListener('submit', async (submitEvent) => {
     submitEvent.preventDefault();
@@ -140,4 +147,8 @@ form.addEventListener('submit', async (submitEvent) => {
     });
     downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
+});
+
+fetchFormParamFromLocation(document.location).forEach(q => {
+    form.elements[q[0]].value = q[1]
 });
