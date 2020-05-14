@@ -6,17 +6,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { PDFDocument, StandardFonts } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
-import FRA from './FRA.txt';
-import ITA from './ITA.txt';
-import ESP from './ESP.txt';
-import GER from './GER.txt';
-import BEL from './BEL.txt';
-import NLD from './NLD.txt';
-import CHE from './CHE.txt';
-import AUT from './AUT.txt';
-import GBR from './GBR.txt';
-import CAN from './CAN.txt';
-import USA from './USA.txt';
+import FRA from './templates/FRA.txt';
+import ITA from './templates/ITA.txt';
+import ESP from './templates/ESP.txt';
+import GER from './templates/GER.txt';
+import BEL from './templates/BEL.txt';
+import NLD from './templates/NLD.txt';
+import CHE from './templates/CHE.txt';
+import AUT from './templates/AUT.txt';
+import GBR from './templates/GBR.txt';
+import CAN from './templates/CAN.txt';
+import USA from './templates/USA.txt';
 
 const defaultMarket = 'other';
 const marketMap = {
@@ -55,7 +55,7 @@ async function drawLogo(pdf, page, logo, margin) {
             break;
         case 'image/jpg':
         case 'image/jpeg':
-            embedMethod = 'embedJpeg';
+            embedMethod = 'embedJpg';
             break;
     }
 
@@ -101,7 +101,11 @@ async function generateVoucherPdf(market, formData) {
     const margin = 60;
 
     if (formData.logo instanceof File && formData.logo.size > 0) {
-        await drawLogo(pdf, page, formData.logo, margin);
+        try {
+            await drawLogo(pdf, page, formData.logo, margin);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     await drawText(pdf, page, market, formData, margin);
@@ -137,7 +141,7 @@ function fetchFormParamFromLocation(location) {
     return location.search
         .replace('?', '')
         .split('&')
-        .map((p) => p.split('='))
+        .map((p) => p.split('='));
 }
 
 const form = document.getElementById('information');
@@ -172,6 +176,6 @@ form.addEventListener('submit', async (submitEvent) => {
     notifyDownload();
 });
 
-fetchFormParamFromLocation(document.location).forEach(q => {
-    form.elements[q[0]].value = q[1]
+fetchFormParamFromLocation(document.location).forEach((q) => {
+    form.elements[q[0]].value = q[1];
 });
