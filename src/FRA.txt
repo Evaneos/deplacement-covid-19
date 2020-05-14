@@ -19,9 +19,9 @@ Vous bénéficiez donc d’un bon à-valoir au sein de notre agence, aux conditi
   - Nom de l’agence locale : %(agency_name)s
   - N° de dossier : %(dossier_id)d
   - Montant du voucher : %(amount)d %(currency)s
-  - Valable jusqu’au %(departure_date)s
+  - Valable jusqu’au %(validity_date)s
 
 Ce voucher n’est pas cessible mais peut-être utilisé en une ou plusieurs fois.
 Les dates sont au format %(date_format)s.
 
-%(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite
+%(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite.

@@ -30,6 +30,11 @@ async function drawLogo(pdf, page, logo, margin) {
         return;
     }
 
+    if (logo.type in ['image/png', 'image/jpg'] === false) {
+        console.error('Logo file format can not be processed, must be `png` or `jpg`, skipping');
+        return;
+    }
+
     let embedMethod;
     switch (logo.type) {
         case 'image/png':
@@ -39,14 +44,37 @@ async function drawLogo(pdf, page, logo, margin) {
             embedMethod = 'embedJpeg';
             break;
     }
+
     const buffer = await logo.arrayBuffer();
     const embeddedLogo = await pdf[embedMethod](buffer);
 
-    // const { height, width } = embeddedLogo;
+    const { height, width } = embeddedLogo;
+
+    const size = 120;
+    const factor = Math.max(width / size, height / size);
+    const [tWidth, tHeight] = [width / factor, height / factor];
 
     page.drawImage(embeddedLogo, {
-        x: page.getWidth() - embeddedLogo.width - margin,
-        y: page.getHeight() - embeddedLogo.height - margin,
+        x: page.getWidth() - tWidth - margin,
+        y: page.getHeight() - tHeight - margin,
+        width: tWidth,
+        height: tHeight,
+    });
+}
+
+async function drawText(pdf, template, formData, creationDate, market, page, margin) {
+    const font = await pdf.embedFont(StandardFonts.Helvetica);
+    const text = sprintf(template, {
+        ...formData,
+        creation_date: creationDate.toLocaleDateString(market.locale),
+        date_format: market.dateFormat,
+    }).replace(/\n/g, ' \n');
+    page.moveTo(margin, page.getHeight() - margin);
+    page.drawText(text, {
+        maxWidth: page.getWidth() - margin * 2,
+        size: 12,
+        lineHeight: 15,
+        font,
     });
 }
 
@@ -54,26 +82,13 @@ async function generateVoucherPdf(market, template, formData, creationDate) {
     const pdf = await PDFDocument.create();
     const page = pdf.addPage();
 
-    const font = await pdf.embedFont(StandardFonts.Helvetica);
     const margin = 60;
 
     if (formData.logo instanceof File) {
         await drawLogo(pdf, page, formData.logo, margin);
     }
 
-    page.moveTo(margin, page.getHeight() - margin);
-    const text = sprintf(template, {
-        ...formData,
-        creationDate,
-        date_format: market.dateFormat,
-    }).replace(/\n/g, ' \n');
-
-    page.drawText(text, {
-        maxWidth: page.getWidth() - margin * 2,
-        size: 12,
-        lineHeight: 15,
-        font,
-    });
+    await drawText(pdf, template, formData, creationDate, market, page, margin);
 
     const pdfBytes = await pdf.save();
 
@@ -104,13 +119,6 @@ const form = document.getElementById('information');
 form.addEventListener('submit', async (submitEvent) => {
     submitEvent.preventDefault();
 
-    const creationInstant = new Date();
-    const creationDate = creationInstant.toLocaleDateString('en-US');
-    const creationHour = creationInstant.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-
     const formData = new FormData(submitEvent.target);
     const countryOrigin = formData.get('country-origin');
 
@@ -127,15 +135,17 @@ form.addEventListener('submit', async (submitEvent) => {
         market = marketMap[defaultMarket];
     }
 
+    const now = new Date();
     const data = serializeFormData(formData, market);
     const template = await (await fetch(market.template)).text();
 
-    const pdfBlob = await generateVoucherPdf(
-        market,
-        template,
-        data,
-        creationDate
-    );
+    const pdfBlob = await generateVoucherPdf(market, template, data, now);
+
+    const creationDate = now.toLocaleDateString('en-US');
+    const creationHour = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+    });
     downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
 });

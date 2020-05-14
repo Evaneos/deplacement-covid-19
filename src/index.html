@@ -9,7 +9,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
 
-        <link rel="shortcut icon" href="favicon.png" type="image/png">
+        <link rel="shortcut icon" href="favicon.png" type="image/png" />
         <title>Evaneos – Voucher document generator</title>
     </head>
     <body>
@@ -28,20 +28,21 @@
 
             <p class="lead">
                 This service is intended for Evaneos agencies. It aims to make
-                easier to create vouchers as PDF documents for our travelers for the COVID-19 crisis. A
-                voucher is valid only if uploaded by the agency from
+                easier to create vouchers as PDF documents for our travelers for
+                the COVID-19 crisis. A voucher is valid only if uploaded by the
+                agency from
                 <em>Evaneos Travel Suite</em> or <em>PRO</em>
             </p>
 
+            <hr />
         </header>
-        <hr />
 
         <main class="container" role="main">
+            <p class="alert alert-secondary">
+                Fill in this form to generate a voucher<br />
+                <small>Every fields are mandatory.</small>
+            </p>
             <form id="information" accept-charset="UTF-8">
-                <p class="alert alert-secondary">
-                    Fill in this form to generate a voucher<br />
-                    <small>Every fields are mandatory.</small>
-                </p>
                 <div class="row">
                     <fieldset class="col-6" name="traveler-information">
                         <legend>Traveler information</legend>
@@ -71,7 +72,7 @@
                                         id="full-name"
                                     />
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="country-origin"
@@ -103,7 +104,9 @@
                                     <option value="other">Other</option>
                                 </select>
                             </div>
-                            <small class="form-text text-muted">It has an impact on the type of voucher</small>
+                            <small class="form-text text-muted"
+                                >It has an impact on the type of voucher</small
+                            >
                         </div>
                     </fieldset>
 
@@ -285,7 +288,9 @@
                                         <option value="GBP"
                                             >British pound (GBP)</option
                                         >
-                                        <option value="USD">US dollar (USD)</option>
+                                        <option value="USD"
+                                            >US dollar (USD)</option
+                                        >
                                         <option value="CAD"
                                             >Canadian dollar (CAD)</option
                                         >
@@ -300,7 +305,10 @@
                                         >
                                     </select>
                                 </div>
-                                <small class="form-text text-muted">It has to be the currency the traveler paid with.</small>
+                                <small class="form-text text-muted"
+                                    >It has to be the currency the traveler paid
+                                    with.</small
+                                >
                             </div>
                         </div>
                         <div class="form-group">

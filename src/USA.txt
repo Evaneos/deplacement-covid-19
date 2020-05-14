@@ -19,7 +19,7 @@ You will therefore benefit from a voucher in our agency under the following cond
   - Name of the local agency: %(agency_name)s
   - File No.: %(dossier_id)d
   - Voucher amount: %(amount)d %(currency)s
-  - Valid until : %(departure_date)s
+  - Valid until : %(validity_date)s
 
 This voucher is non-transferable but can be used in one or several times.
 Dates are formatted %(date_format)s.
