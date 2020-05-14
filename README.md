@@ -1,6 +1,4 @@
-# Générateur de certificat de déplacement
-
-## Développer
+# Générateur de voucher
 
 ### Installer le projet
 
@@ -19,7 +17,31 @@ $ npm run build
 
 Le code à déployer sera dans le dossier `dist`
 
-## Crédits
+### Api
+
+Préciser les paramètres en query string (ex: ?full-name=tata&currency=EUR)
+
+|Field                      | Value                                                     |
+|:--------------------------|:----------------------------------------------------------|
+|honorific-prefix           | text                                                      |
+|full-name                  | text                                                      |
+|country-origin             | select [fr, it, es, de, be, nl, ch, at, us, uk, ca, other]|
+|agency-name                | text                                                      |
+|agency-address-address1    | text                                                      |
+|agency-address-address2    | text                                                      |
+|agency-address-city        | text                                                      |
+|agency-address-zip         | text                                                      |
+|agency-address-country     | text                                                      |
+|dossier-id                 | number                                                    |
+|destination                | text                                                      |
+|departure-date             | date (yyyy-mm-dd)                                         |
+|departure-date             | date (yyyy-mm-dd)                                         |
+|amount                     | number                                                    |
+|currency                   | select [EUR, GBP, USD, CAD, CHF, SEK, DKK]                |
+|validity-date              | date (yyyy-mm-dd)                                         |
+
+
+### Crédits
 
 Ce projet a été réalisé à partir d'un fork du dépôt [deplacement-covid-19](https://github.com/LAB-MI/deplacement-covid-19) de l'[Incubateur du ministère de l'intérieur](https://github.com/LAB-MI).
 
