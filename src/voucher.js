@@ -16,7 +16,7 @@ const marketMap = {
     other: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
 };
 
-function serializeFormData(formData, market) {
+function serializeFormData(market, formData) {
     return Array.from(formData).reduce((entries, entry) => {
         if (entry[0].match(/-date/)) {
             entry[1] = new Date(entry[1]).toLocaleDateString(market.locale);
@@ -57,13 +57,16 @@ async function drawLogo(pdf, page, logo, margin) {
     });
 }
 
-async function drawText(pdf, template, formData, creationDate, market, page, margin) {
+async function drawText(pdf, page, market, formData, margin) {
     const font = await pdf.embedFont(StandardFonts.Helvetica);
+    const template = await (await fetch(market.template)).text();
+
     const text = sprintf(template, {
         ...formData,
-        creation_date: creationDate.toLocaleDateString(market.locale),
+        creation_date: new Date().toLocaleDateString(market.locale),
         date_format: market.dateFormat,
     }).replace(/\n/g, ' \n');
+
     page.moveTo(margin, page.getHeight() - margin);
     page.drawText(text, {
         maxWidth: page.getWidth() - margin * 2,
@@ -73,21 +76,18 @@ async function drawText(pdf, template, formData, creationDate, market, page, mar
     });
 }
 
-async function generateVoucherPdf(market, template, formData, creationDate) {
+async function generateVoucherPdf(market, formData) {
     const pdf = await PDFDocument.create();
     const page = pdf.addPage();
-
     const margin = 60;
 
     if (formData.logo instanceof File) {
         await drawLogo(pdf, page, formData.logo, margin);
     }
 
-    await drawText(pdf, template, formData, creationDate, market, page, margin);
+    await drawText(pdf, page, market, formData, margin);
 
-    const pdfBytes = await pdf.save();
-
-    return new Blob([pdfBytes], { type: 'application/pdf' });
+    return new Blob([await pdf.save()], { type: 'application/pdf' });
 }
 
 function downloadBlob(blob, fileName) {
@@ -118,7 +118,6 @@ form.addEventListener('submit', async (submitEvent) => {
     const countryOrigin = formData.get('country-origin');
 
     let market = marketMap[countryOrigin];
-
     if (market === undefined) {
         console.error(
             sprintf(
@@ -131,10 +130,8 @@ form.addEventListener('submit', async (submitEvent) => {
     }
 
     const now = new Date();
-    const data = serializeFormData(formData, market);
-    const template = await (await fetch(market.template)).text();
-
-    const pdfBlob = await generateVoucherPdf(market, template, data, now);
+    const data = serializeFormData(market, formData);
+    const pdfBlob = await generateVoucherPdf(market, data);
 
     const creationDate = now.toLocaleDateString('en-US');
     const creationHour = now.toLocaleTimeString('en-US', {
