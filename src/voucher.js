@@ -81,7 +81,7 @@ async function generateVoucherPdf(market, formData) {
     const page = pdf.addPage();
     const margin = 60;
 
-    if (formData.logo instanceof File) {
+    if (formData.logo instanceof File && formData.logo.size > 0) {
         await drawLogo(pdf, page, formData.logo, margin);
     }
 
@@ -111,6 +111,10 @@ function notifyDownload() {
 }
 
 function fetchFormParamFromLocation(location) {
+    if (location.search === '') {
+        return [];
+    }
+
     return location.search
         .replace('?', '')
         .split('&')
