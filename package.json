@@ -63,11 +63,6 @@
         "disablePlugin": false,
         "inDev": true,
         "strategy": "default",
-        "clearDist": false,
-        "templatedURLs": {
-            "./": [
-                "index.html"
-            ]
-        }
+        "clearDist": false
     }
 }
