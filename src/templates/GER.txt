@@ -1,6 +1,4 @@
-!!!!TO BE TRANSLATED!!!!
-
-%(agency_address_city)s, le %(creation_date)s
+%(agency_address_city)s, das %(creation_date)s
 
 %(agency_name)s
 %(agency_address_address1)s
@@ -12,18 +10,18 @@
 
 %(honorific_prefix)s %(full_name)s,
 
-En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolé.
+Aufgrund der COVID-19 Pandemie war es Ihnen nicht möglich, Ihre Reise mit unserer lokalen Agentur durchzuführen. Dies tut uns sehr leid.
 
-  - Destination: %(destination)s
-  - Départ initialement prévu le %(departure_date)s
+  - Reiseziel: %(destination)s
+  - Ursprünglich geplante Abreise am %(departure_date)s
 
-Vous bénéficiez donc d’un bon à-valoir au sein de notre agence, aux conditions suivantes :
-  - Nom de l’agence locale : %(agency_name)s
-  - N° de dossier : %(dossier_id)d
-  - Montant du voucher : %(amount)d %(currency)s
-  - Valable jusqu’au %(validity_date)s
+Sie profitieren daher unter den folgenden Bedingungen von einem Gutschein von unserer Agentur:
+  - Name der lokalen Agentur: %(agency_name)s
+  - Aktennummer: %(dossier_id)d
+  - Gutschein-Betrag: %(amount)d %(currency)s
+  - Gültig bis %(validity_date)s
 
-Ce voucher n’est pas cessible mais peut-être utilisé en une ou plusieurs fois.
-Les dates sont au format %(date_format)s.
+Dieser Gutschein ist nicht übertragbar, kann aber ein- oder mehrmals verwendet werden.
+Die Daten sind in %(date_format)s angegeben.
 
-%(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite.
+%(agency_name)s und unser gesamtes Team danken Ihnen für Ihr Vertrauen und hoffen auf einen möglichst baldigen Austausch mit Ihnen.
