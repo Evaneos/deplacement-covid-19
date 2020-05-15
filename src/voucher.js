@@ -1,8 +1,7 @@
-// import './icons';
 import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { PDFDocument, StandardFonts } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
 import AUT from './templates/AUT.txt';
@@ -78,7 +77,6 @@ async function drawLogo(pdf, logo, margin) {
 }
 
 async function drawText(pdf, market, formData, margin) {
-    const font = await pdf.embedFont(StandardFonts.Helvetica);
     const template = await (await fetch(market.template)).text();
 
     const doc = sprintf(template, {
@@ -97,7 +95,6 @@ async function drawText(pdf, market, formData, margin) {
             maxWidth: page.getWidth() - margin * 2,
             size: 12,
             lineHeight: 15,
-            font,
         });
     }
 }
