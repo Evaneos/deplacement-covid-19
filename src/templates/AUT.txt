@@ -1,5 +1,3 @@
-!!!!TO BE TRANSLATED!!!!
-
 %(agency_address_city)s, das %(creation_date)s
 
 %(agency_name)s
