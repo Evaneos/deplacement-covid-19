@@ -86,7 +86,9 @@ async function drawText(pdf, market, formData, margin) {
         ...formData,
         creation_date: new Date().toLocaleDateString(market.locale),
         date_format: market.dateFormat,
-    }).replace(/\n/g, ' \n').split('---');
+    })
+        .replace(/\n/g, ' \n')
+        .split('---');
 
     for (let text of doc) {
         const page = pdf.addPage();
@@ -104,7 +106,7 @@ async function drawText(pdf, market, formData, margin) {
 async function generateVoucherPdf(market, formData) {
     const pdf = await PDFDocument.create();
     const margin = 60;
-    
+
     await drawText(pdf, market, formData, margin);
 
     if (formData.logo instanceof File && formData.logo.size > 0) {
@@ -143,7 +145,7 @@ function fetchFormParamFromLocation(location) {
         return [];
     }
 
-    return location.search
+    return decodeURIComponent(location.search)
         .replace('?', '')
         .split('&')
         .map((p) => p.split('='));
