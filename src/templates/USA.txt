@@ -10,18 +10,18 @@
 
 %(honorific_prefix)s %(full_name)s,
 
-Due to the outbreak of COVID-19, you were unable to make your trip with our local agency and we are sorry.
+Due to COVID-19 outbreak, you were unable to make your trip with our local agency - we are truly sorry about this.
 
   - Destination: %(destination)s
-  - Initial departure : %(departure_date)s
+  - Initial departure date: %(departure_date)s
 
 You will therefore benefit from a voucher in our agency under the following conditions:
   - Name of the local agency: %(agency_name)s
   - File No.: %(dossier_id)d
   - Voucher amount: %(amount)d %(currency)s
-  - Valid until : %(validity_date)s
+  - Valid until: %(validity_date)s
 
-This voucher is non-transferable but can be used in one or several times.
+This voucher is non-transferable but can be used for one or several different payments.
 Dates are formatted %(date_format)s.
 
-%(agency_name)s and all its team thank you for your trust and hope to exchange with you as soon as possible.
+%(agency_name)s and all its team thank you for your trust and hope to hear from you as soon as possible.
