@@ -4,12 +4,8 @@
     "description": "Agency form to generate voucher for deferred travels",
     "main": "certificate.js",
     "scripts": {
-        "start": "VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/voucher-generator} ./src/index.html",
-        "build": "parcel build --public-url ${PUBLIC_URL:-/voucher-generator} ./src/index.html ./src/robots.txt",
-        "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/voucher-generator} react-snap",
-        "preserve": "npm run build",
-        "serve": "serve dist",
-        "serve:dist": "serve dist"
+        "start": "VERSION=${VERSION:-localversion} parcel ./src/index.html",
+        "build": "parcel build ./src/index.html ./src/robots.txt"
     },
     "repository": {
         "type": "git",
@@ -29,29 +25,14 @@
         "postcss-nested": "^4.2.1",
         "postcss-nested-ancestors": "^2.0.0",
         "postcss-preset-env": "^6.7.0",
-        "prettier": "^2.0.4",
-        "react-snap": "^1.23.0",
-        "serve": "^11.3.0"
+        "prettier": "^2.0.4"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.28",
-        "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "bootstrap": "^4.4.1",
         "pdf-lib": "^1.4.1",
         "sprintf-js": "^1.1.2"
     },
     "browserslist": [
         "last 5 versions"
-    ],
-    "reactSnap": {
-        "source": "dist",
-        "minifyHtml": {
-            "collapseWhitespace": false,
-            "removeComments": false
-        },
-        "puppeteerArgs": [
-            "--no-sandbox",
-            "--disable-setuid-sandbox"
-        ]
-    }
+    ]
 }
