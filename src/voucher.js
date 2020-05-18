@@ -19,14 +19,14 @@ import USA from './templates/USA.txt';
 const defaultMarket = 'other';
 const marketMap = {
     fr: { template: FRA, locale: 'fr-FR', dateFormat: 'jj/mm/aaaa' },
-    it: { template: ITA, locale: 'it-IT', dateFormat: 'jj/mm/aaa' },
-    es: { template: ESP, locale: 'es-ES', dateFormat: 'jj/mm/aaa' },
-    de: { template: GER, locale: 'de-DE', dateFormat: 'jj/mm/aaa' },
-    be: { template: BEL, locale: 'fr-BE', dateFormat: 'jj/mm/aaa' },
-    nl: { template: NLD, locale: 'nl-NL', dateFormat: 'jj/mm/aaa' },
-    ch: { template: CHE, locale: 'fr-CH', dateFormat: 'jj/mm/aaa' },
-    at: { template: AUT, locale: 'de-AT', dateFormat: 'jj/mm/aaa' },
-    gb: { template: GBR, locale: 'en-GB', dateFormat: 'jj/mm/aaa' },
+    it: { template: ITA, locale: 'it-IT', dateFormat: 'jj/mm/aaaa' },
+    es: { template: ESP, locale: 'es-ES', dateFormat: 'jj/mm/aaaa' },
+    de: { template: GER, locale: 'de-DE', dateFormat: 'jj/mm/aaaa' },
+    be: { template: BEL, locale: 'fr-BE', dateFormat: 'jj/mm/aaaa' },
+    nl: { template: NLD, locale: 'nl-NL', dateFormat: 'jj/mm/aaaa' },
+    ch: { template: CHE, locale: 'fr-CH', dateFormat: 'jj/mm/aaaa' },
+    at: { template: AUT, locale: 'de-AT', dateFormat: 'jj/mm/aaaa' },
+    gb: { template: GBR, locale: 'en-GB', dateFormat: 'jj/mm/aaaa' },
     ca: { template: CAN, locale: 'en-CA', dateFormat: 'mm/dd/yyyy' },
     us: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
     other: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
@@ -220,10 +220,11 @@ form.addEventListener('submit', async (submitEvent) => {
 
     const creationDate = now.toLocaleDateString('en-US');
     const creationHour = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-    downloadBlob(pdfBlob, `voucher-${creationDate}_${creationHour}.pdf`);
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false
+    }).replace(/:/g, '_');
+    downloadBlob(pdfBlob, `voucher-${data.full_name.toLowerCase().replace(/ /g, '_')}-${creationDate}_${creationHour}.pdf`);
     notifyDownload();
 });
 
