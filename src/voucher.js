@@ -26,7 +26,7 @@ const marketMap = {
     nl: { template: NLD, locale: 'nl-NL', dateFormat: 'jj/mm/aaa' },
     ch: { template: CHE, locale: 'fr-CH', dateFormat: 'jj/mm/aaa' },
     at: { template: AUT, locale: 'de-AT', dateFormat: 'jj/mm/aaa' },
-    uk: { template: GBR, locale: 'en-GB', dateFormat: 'jj/mm/aaa' },
+    gb: { template: GBR, locale: 'en-GB', dateFormat: 'jj/mm/aaa' },
     ca: { template: CAN, locale: 'en-CA', dateFormat: 'mm/dd/yyyy' },
     us: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
     other: { template: USA, locale: 'en-US', dateFormat: 'mm/dd/yyyy' },
@@ -180,5 +180,9 @@ form.addEventListener('submit', async (submitEvent) => {
 });
 
 fetchFormParamFromLocation(document.location).forEach((q) => {
-    form.elements[q[0]].value = q[1];
+    try {
+        form.elements[q[0]].value = q[1];
+    } catch(e) {
+        console.error(sprintf('Failed to assign parameter %s with value %s', ...q))
+    }
 });
