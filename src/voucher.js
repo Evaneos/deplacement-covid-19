@@ -116,6 +116,52 @@ async function generateVoucherPdf(market, formData) {
     return new Blob([await pdf.save()], { type: 'application/pdf' });
 }
 
+const agencyFields = [
+    'logo',
+    'agency-name',
+    'agency-address-address1',
+    'agency-address-address2',
+    'agency-address-city',
+    'agency-address-zip',
+    'agency-address-country',
+];
+
+/**
+ * @param   {FormData}  formData
+ * @return  {void}
+ */
+async function persistAgencyValues(formData) {
+    for (let key of agencyFields) {
+        let value = formData.get(key);
+        if (value === null || value === '') {
+            continue;
+        }
+        if (value instanceof File) {
+            continue;
+        }
+        window.localStorage.setItem(key, value);
+    }
+}
+
+function restoreAgencyValues() {
+    const fields = document.forms['information'].elements;
+
+    for (let key of agencyFields) {
+        let value = window.localStorage.getItem(key);
+        if (value === null) {
+            continue;
+        }
+        if (key === 'logo') {
+            continue;
+        }
+        try {
+            fields[key].value = value;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+}
+
 function downloadBlob(blob, fileName) {
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
@@ -152,6 +198,8 @@ form.addEventListener('submit', async (submitEvent) => {
     submitEvent.preventDefault();
 
     const formData = new FormData(submitEvent.target);
+    await persistAgencyValues(formData);
+
     const countryOrigin = formData.get('country-origin');
 
     let market = marketMap[countryOrigin];
@@ -182,7 +230,11 @@ form.addEventListener('submit', async (submitEvent) => {
 fetchFormParamFromLocation(document.location).forEach((q) => {
     try {
         form.elements[q[0]].value = q[1];
-    } catch(e) {
-        console.error(sprintf('Failed to assign parameter %s with value %s', ...q))
+    } catch (e) {
+        console.error(
+            sprintf('Failed to assign parameter %s with value %s', ...q)
+        );
     }
 });
+
+restoreAgencyValues();
