@@ -1,4 +1,4 @@
-%(agency_address_city)s, el %(creation_date)s
+%(agency_address_city)s, %(creation_date)s
 
 %(agency_name)s
 %(agency_address_address1)s
@@ -12,9 +12,8 @@
 
 Debido al brote de COVID-19, no pudiste hacer tu viaje con nuestra agencia local y lo sentimos.
 
-
   - Destino: %(destination)s
-  - Salida originalmente prevista en %(departure_date)s
+  - Salida originalmente prevista el %(departure_date)s
   
 Por lo tanto, podrás beneficiarte de un bono emitido por nuestra agencia bajo las siguientes condiciones:
   - Nombre de la agencia local: %(agency_name)s
@@ -22,7 +21,7 @@ Por lo tanto, podrás beneficiarte de un bono emitido por nuestra agencia bajo l
   - Monto del bono: %(amount)d %(currency)s
   - Válido hasta %(validity_date)s
 
-Este vale es intransferible, pero puede ser utilizado en una o varias veces.
+Este vale es intransferible, pero puede ser utilizado en una o varias ocasiones.
 Las fechas están en %(date_format)s.
 
-%(agency_name)s y todo su equipo agradecen tu confianza y esperan seguir hablando contigo lo antes posible.
+%(agency_name)s y todo su equipo agradecen tu confianza y esperan seguir en contacto contigo lo antes posible.
