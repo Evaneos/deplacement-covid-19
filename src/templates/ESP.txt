@@ -13,8 +13,10 @@
 Debido al brote de COVID-19, no pudiste hacer tu viaje con nuestra agencia local y lo sentimos.
 
   - Destino: %(destination)s
-  - Salida originalmente prevista el %(departure_date)s
+  - Salida originalmente prevista el %(arrival_date)s
   
+%(side_notes)s
+
 Por lo tanto, podrás beneficiarte de un bono emitido por nuestra agencia bajo las siguientes condiciones:
   - Nombre de la agencia local: %(agency_name)s
   - Nº de expediente: %(dossier_id)d

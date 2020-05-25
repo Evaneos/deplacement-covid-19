@@ -74,9 +74,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="country-origin"
-                                >Country of origin</label
-                            >
+                            <label for="country-origin">Traveler country</label>
                             <div class="input-group">
                                 <select
                                     class="form-control"
@@ -85,7 +83,7 @@
                                     required
                                 >
                                     <option selected disabled
-                                        >Select a country of origin</option
+                                        >Select a country</option
                                     >
                                     <option value="at">Austria</option>
                                     <option value="be">Belgium</option>
@@ -104,7 +102,9 @@
                                 </select>
                             </div>
                             <small class="form-text text-muted"
-                                >It has an impact on the type of voucher</small
+                                >Voucher will be generated according to traveler
+                                country of residence (legal constraints and
+                                spoken language)</small
                             >
                         </div>
                     </fieldset>
@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="destination">Destination</label>
+                            <label for="destination">Destination country</label>
                             <div class="input-group align-items-center">
                                 <input
                                     type="text"
@@ -314,16 +314,52 @@
                                 >
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="validity-date">Valid until</label>
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="date"
-                                    value="2021-12-31"
-                                    class="form-control"
-                                    name="validity-date"
-                                    id="validity-date"
-                                />
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="validity-date"
+                                    >Valid until
+                                    <small class="text-muted">
+                                        (not editable)
+                                    </small></label
+                                >
+                                <div class="input-group align-items-center">
+                                    <input type="hidden" name="validity-date" value="2021-12-31">
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="validity-date"
+                                        value="2021-12-31"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <fieldset class="col-12" name="side-note">
+                        <legend>Side notes</legend>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="side-notes"
+                                    >Add a note to your voucher
+                                    <small
+                                        class="text-muted"
+                                        id="side-notes-maxlength-indicator"
+                                        >0/300</small
+                                    ></label
+                                >
+                                <div class="input-group">
+                                    <textarea
+                                        class="form-control"
+                                        maxlength="800"
+                                        name="side-notes"
+                                        id="side-notes"
+                                    ></textarea>
+                                </div>
                             </div>
                         </div>
                     </fieldset>

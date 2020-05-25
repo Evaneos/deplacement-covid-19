@@ -13,7 +13,9 @@
 Due to COVID-19 outbreak, you were unable to make your trip with our local agency - we are truly sorry about this.
 
   - Destination: %(destination)s
-  - Initial departure date: %(departure_date)s
+  - Initial departure date: %(arrival_date)s
+
+%(side_notes)s
 
 You will therefore benefit from a voucher in our agency under the following conditions:
   - Name of the local agency: %(agency_name)s

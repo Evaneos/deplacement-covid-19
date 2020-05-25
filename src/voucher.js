@@ -193,6 +193,32 @@ function fetchFormParamFromLocation(location) {
         .map((p) => p.split('='));
 }
 
+/**
+ * @param   {HTMLInputElement|HTMLTextAreaElement}  input
+ * @param   {HTMLElement}  indicator
+ *
+ * @return  {void}
+ */
+function maxLengthIndicator(input, indicator) {
+    
+    function updateIndicator(input, indicator) {
+        const maxLength = input.maxLength;
+        const length = input.value.length;
+        indicator.textContent = `${length}/${maxLength}`;
+    }
+    
+    input.addEventListener(
+        'keyup',
+        (event) => updateIndicator(event.target, indicator),
+        { passive: true }
+    );
+    updateIndicator(input, indicator);
+}
+maxLengthIndicator(
+    document.getElementById('side-notes'),
+    document.getElementById('side-notes-maxlength-indicator')
+);
+
 const form = document.getElementById('information');
 form.addEventListener('submit', async (submitEvent) => {
     submitEvent.preventDefault();
@@ -219,12 +245,19 @@ form.addEventListener('submit', async (submitEvent) => {
     const pdfBlob = await generateVoucherPdf(market, data);
 
     const creationDate = now.toLocaleDateString('en-US');
-    const creationHour = now.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: false
-    }).replace(/:/g, '_');
-    downloadBlob(pdfBlob, `voucher-${data.full_name.toLowerCase().replace(/ /g, '_')}-${creationDate}_${creationHour}.pdf`);
+    const creationHour = now
+        .toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: false,
+        })
+        .replace(/:/g, '_');
+    downloadBlob(
+        pdfBlob,
+        `voucher-${data.full_name
+            .toLowerCase()
+            .replace(/ /g, '_')}-${creationDate}_${creationHour}.pdf`
+    );
     notifyDownload();
 });
 

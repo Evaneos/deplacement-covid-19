@@ -1,5 +1,3 @@
-!!!!TO BE TRANSLATED!!!!
-
 %(agency_address_city)s, le %(creation_date)s
 
 %(agency_name)s
@@ -15,7 +13,9 @@
 En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolé.
 
   - Destination: %(destination)s
-  - Départ initialement prévu le %(departure_date)s
+  - Départ initialement prévu le %(arrival_date)s
+
+%(side_notes)s
 
 Vous bénéficiez donc d’un bon à-valoir au sein de notre agence, aux conditions suivantes :
   - Nom de l’agence locale : %(agency_name)s

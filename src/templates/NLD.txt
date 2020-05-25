@@ -13,7 +13,9 @@
 Door de uitbraak van COVID-19 was u niet in staat om de door ons georganiseerde reis te maken.
 
   - Bestemming: %(destination)s
-  - Vertrek oorspronkelijk gepland op: %(departure_date)s
+  - Vertrek oorspronkelijk gepland op: %(arrival_date)s
+
+%(side_notes)s
 
 U profiteert daarom van een voucher, uitgegeven door ons reisbureau onder de volgende voorwaarden:
   - Naam van het reisbureau: %(agency_name)s

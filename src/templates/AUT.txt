@@ -13,7 +13,9 @@
 Aufgrund der COVID-19 Pandemie war es Ihnen nicht möglich, Ihre Reise mit unserer lokalen Agentur durchzuführen. Dies tut uns sehr leid.
 
   - Reiseziel: %(destination)s
-  - Ursprünglich geplante Abreise am %(departure_date)s
+  - Ursprünglich geplante Abreise am %(arrival_date)s
+
+%(side_notes)s
 
 Sie profitieren daher unter den folgenden Bedingungen von einem Gutschein von unserer Agentur:
   - Name der lokalen Agentur: %(agency_name)s

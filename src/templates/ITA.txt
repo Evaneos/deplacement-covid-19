@@ -13,7 +13,9 @@
 Purtroppo, a causa della pandemia COVID-19, non siete stati in grado di realizzare il vostro viaggio con la nostra agenzia locale.
 
   - Destinazione: %(destination)s
-  - Partenza inizialmente prevista in %(departure_date)s
+  - Partenza inizialmente prevista in %(arrival_date)s
+
+%(side_notes)s
 
 Potrete quindi beneficiare di un voucher presso la nostra agenzia locale partner alle seguenti condizioni:
   - Nome dell'agenzia locale: %(agency_name)s
