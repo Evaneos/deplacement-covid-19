@@ -1,6 +1,7 @@
 import './main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { addMonths, format } from 'date-fns';
 import { PDFDocument } from 'pdf-lib';
 import { sprintf } from 'sprintf-js';
 
@@ -193,6 +194,16 @@ function fetchFormParamFromLocation(location) {
         .map((p) => p.split('='));
 }
 
+function setValidityDate(input) {
+    const MIN_DATE = new Date(2021, 11, 31);
+    const MONTH_TO_ADD = 18;
+    const validityDate = addMonths(Date.now(), MONTH_TO_ADD);
+
+    input.value = format(Math.max(validityDate, MIN_DATE), 'yyyy-MM-dd');
+}
+setValidityDate(document.getElementById('validity-date-display'));
+setValidityDate(document.getElementById('validity-date'));
+
 /**
  * @param   {HTMLInputElement|HTMLTextAreaElement}  input
  * @param   {HTMLElement}  indicator
@@ -200,13 +211,12 @@ function fetchFormParamFromLocation(location) {
  * @return  {void}
  */
 function maxLengthIndicator(input, indicator) {
-    
     function updateIndicator(input, indicator) {
         const maxLength = input.maxLength;
         const length = input.value.length;
         indicator.textContent = `${length}/${maxLength}`;
     }
-    
+
     input.addEventListener(
         'keyup',
         (event) => updateIndicator(event.target, indicator),

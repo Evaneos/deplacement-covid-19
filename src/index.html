@@ -316,18 +316,23 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
-                                <label for="validity-date"
+                                <label
                                     >Valid until
                                     <small class="text-muted">
                                         (not editable)
                                     </small></label
                                 >
                                 <div class="input-group align-items-center">
-                                    <input type="hidden" name="validity-date" value="2021-12-31">
+                                    <input
+                                        type="hidden"
+                                        id="validity-date"
+                                        name="validity-date"
+                                        value="2021-12-31"
+                                    />
                                     <input
                                         type="date"
                                         class="form-control"
-                                        id="validity-date"
+                                        id="validity-date-display"
                                         value="2021-12-31"
                                         disabled
                                     />
@@ -349,9 +354,8 @@
                                     <small
                                         class="text-muted"
                                         id="side-notes-maxlength-indicator"
-                                        ></small
-                                    ></label
-                                >
+                                    ></small
+                                ></label>
                                 <div class="input-group">
                                     <textarea
                                         class="form-control"
