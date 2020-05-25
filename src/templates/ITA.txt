@@ -1,6 +1,4 @@
-!!!!TO BE TRANSLATED!!!!
-
-%(agency_address_city)s, le %(creation_date)s
+%(agency_address_city)s, la %(creation_date)s
 
 %(agency_name)s
 %(agency_address_address1)s
@@ -12,18 +10,18 @@
 
 %(honorific_prefix)s %(full_name)s,
 
-En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolé.
+Purtroppo, a causa della pandemia COVID-19, non siete stati in grado di realizzare il vostro viaggio con la nostra agenzia locale.
 
-  - Destination: %(destination)s
-  - Départ initialement prévu le %(departure_date)s
+  - Destinazione: %(destination)s
+  - Partenza inizialmente prevista in %(departure_date)s
 
-Vous bénéficiez donc d’un bon à-valoir au sein de notre agence, aux conditions suivantes :
-  - Nom de l’agence locale : %(agency_name)s
-  - N° de dossier : %(dossier_id)d
-  - Montant du voucher : %(amount)d %(currency)s
-  - Valable jusqu’au %(validity_date)s
+Potrete quindi beneficiare di un voucher presso la nostra agenzia locale partner alle seguenti condizioni:
+  - Nome dell'agenzia locale: %(agency_name)s
+  - Numero della pratica: %(dossier_id)d
+  - Importo del voucher: %(amount)d %(currency)s
+  - Valido fino a %(validity_date)s
 
-Ce voucher n’est pas cessible mais peut-être utilisé en une ou plusieurs fois.
-Les dates sont au format %(date_format)s.
+Questo voucher non è trasferibile ma può essere utilizzato una o più volte.
+Le date sono in %(date_format)s.
 
-%(agency_name)s et toute son équipe vous remercie de votre confiance et espérons échanger avec vous au plus vite.
+%(agency_name)s e tutto il suo team vi ringrazia per la vostra fiducia e spera di sentirvi il prima possibile.
