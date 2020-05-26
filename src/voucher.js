@@ -194,6 +194,38 @@ function fetchFormParamFromLocation(location) {
         .map((p) => p.split('='));
 }
 
+/**
+ * @param {HTMLInputElement} arrivalInput
+ * @param {HTMLInputElement} departureInput
+ *
+ * @returns {void}
+ */
+function checkDepartureDateIsAfterArrivalDate(arrivalInput, departureInput) {
+    const arrivalDate = new Date(arrivalInput.value);
+    const departureDate = new Date(departureInput.value);
+
+    if (arrivalInput.value === '') {
+        return;
+    }
+
+    if (arrivalDate > departureDate) {
+        departureInput.setCustomValidity(
+            'Departure date must be greater than Arrival date'
+        );
+        return;
+    }
+
+    departureInput.setCustomValidity('');
+}
+document
+    .getElementById('departure-date')
+    .addEventListener('change', (event) =>
+        checkDepartureDateIsAfterArrivalDate(
+            document.getElementById('arrival-date'),
+            event.target
+        )
+    );
+
 function setValidityDate(input) {
     const MIN_DATE = new Date(2021, 11, 31);
     const MONTH_TO_ADD = 18;
@@ -270,6 +302,46 @@ form.addEventListener('submit', async (submitEvent) => {
     );
     notifyDownload();
 });
+
+/**
+ * @param   {Event}  event
+ *
+ * @return  {void}
+ */
+function displayValidationErrors(event) {
+    const field = event.target;
+    let errorMessageContainer = field.parentElement.querySelector(
+        '.invalid-feedback'
+    );
+
+    if (errorMessageContainer === null) {
+        errorMessageContainer = document.createElement('div');
+        errorMessageContainer.classList.add('invalid-feedback');
+
+        field.parentElement.appendChild(errorMessageContainer);
+    }
+
+    if (field.validity.valid === true) {
+        field.classList.add('is-valid');
+        field.classList.remove('is-invalid');
+        errorMessageContainer.textContent = '';
+        return;
+    }
+
+    field.classList.remove('is-valid');
+    field.classList.add('is-invalid');
+
+    errorMessageContainer.textContent = field.validationMessage;
+}
+form.addEventListener('change', displayValidationErrors, { passive: true });
+form.addEventListener(
+    'invalid',
+    (event) => {
+        event.preventDefault();
+        displayValidationErrors(event);
+    },
+    { capture: true }
+);
 
 fetchFormParamFromLocation(document.location).forEach((q) => {
     try {

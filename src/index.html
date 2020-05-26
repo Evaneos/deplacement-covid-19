@@ -48,59 +48,53 @@
                         <div class="form-row">
                             <div class="form-group col-3">
                                 <label for="honorific-prefix">Title</label>
-                                <div class="input-group">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        required
-                                        autocomplete="honorific-prefix"
-                                        name="honorific-prefix"
-                                        id="honorific-prefix"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    required
+                                    autocomplete="honorific-prefix"
+                                    name="honorific-prefix"
+                                    id="honorific-prefix"
+                                />
                             </div>
                             <div class="form-group col-9">
                                 <label for="full-name">Full name</label>
-                                <div class="input-group">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        required
-                                        autocomplete="name"
-                                        name="full-name"
-                                        id="full-name"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    required
+                                    autocomplete="name"
+                                    name="full-name"
+                                    id="full-name"
+                                />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="country-origin">Traveler country</label>
-                            <div class="input-group">
-                                <select
-                                    class="form-control"
-                                    name="country-origin"
-                                    id="country-origin"
-                                    required
+                            <select
+                                class="form-control"
+                                name="country-origin"
+                                id="country-origin"
+                                required
+                            >
+                                <option selected disabled
+                                    >Select a country</option
                                 >
-                                    <option selected disabled
-                                        >Select a country</option
-                                    >
-                                    <option value="at">Austria</option>
-                                    <option value="be">Belgium</option>
-                                    <option value="ca">Canada</option>
-                                    <option value="fr">France</option>
-                                    <option value="de">Germany</option>
-                                    <option value="it">Italy</option>
-                                    <option value="nl">Netherland</option>
-                                    <option value="es">Spain</option>
-                                    <option value="ch">Swiss</option>
-                                    <option value="gb">United Kingdom</option>
-                                    <option value="us"
-                                        >United States of America</option
-                                    >
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
+                                <option value="at">Austria</option>
+                                <option value="be">Belgium</option>
+                                <option value="ca">Canada</option>
+                                <option value="fr">France</option>
+                                <option value="de">Germany</option>
+                                <option value="it">Italy</option>
+                                <option value="nl">Netherland</option>
+                                <option value="es">Spain</option>
+                                <option value="ch">Swiss</option>
+                                <option value="gb">United Kingdom</option>
+                                <option value="us"
+                                    >United States of America</option
+                                >
+                                <option value="other">Other</option>
+                            </select>
                             <small class="form-text text-muted"
                                 >Voucher will be generated according to traveler
                                 country of residence (legal constraints and
@@ -114,31 +108,27 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="agency-name">Agency name</label>
-                                <div class="input-group align-items-center">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        name="agency-name"
-                                        id="agency-name"
-                                        autocomplete="organization"
-                                        required
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="agency-name"
+                                    id="agency-name"
+                                    autocomplete="organization"
+                                    required
+                                />
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="logo"
                                     >Logo <small>(optional)</small></label
                                 >
-                                <div class="input-group align-items-center">
-                                    <input
-                                        type="file"
-                                        accept="image/jpg,image/jpeg,image/png"
-                                        class="form-control"
-                                        name="logo"
-                                        id="logo"
-                                    />
-                                </div>
+                                <input
+                                    type="file"
+                                    accept="image/jpg,image/jpeg,image/png"
+                                    class="form-control"
+                                    name="logo"
+                                    id="logo"
+                                />
                                 <small class="form-text text-muted"
                                     >PNG or JPG</small
                                 >
@@ -207,55 +197,47 @@
                         <legend>Dossier information</legend>
                         <div class="form-group">
                             <label for="dossier-id">Dossier ID</label>
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="dossier-id"
-                                    id="dossier-id"
-                                    required
-                                />
-                            </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="dossier-id"
+                                id="dossier-id"
+                                required
+                            />
                         </div>
                         <div class="form-group">
                             <label for="destination">Destination country</label>
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="destination"
-                                    id="destination"
-                                    required
-                                />
-                            </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="destination"
+                                id="destination"
+                                required
+                            />
                         </div>
                         <div class="form-group">
                             <label for="arrival-date"
                                 >Initial arrival date to destination</label
                             >
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    name="arrival-date"
-                                    id="arrival-date"
-                                    required
-                                />
-                            </div>
+                            <input
+                                type="date"
+                                class="form-control"
+                                name="arrival-date"
+                                id="arrival-date"
+                                required
+                            />
                         </div>
                         <div class="form-group">
                             <label for="departure-date"
                                 >Initial departure date from destination</label
                             >
-                            <div class="input-group align-items-center">
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    name="departure-date"
-                                    id="departure-date"
-                                    required
-                                />
-                            </div>
+                            <input
+                                type="date"
+                                class="form-control"
+                                name="departure-date"
+                                id="departure-date"
+                                required
+                            />
                         </div>
                     </fieldset>
 
@@ -264,50 +246,44 @@
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="amount">Amount</label>
-                                <div class="input-group align-items-center">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        name="amount"
-                                        id="amount"
-                                        required
-                                    />
-                                </div>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    name="amount"
+                                    id="amount"
+                                    required
+                                />
                             </div>
                             <div class="form-group col-6">
                                 <label for="currency">Currency</label>
-                                <div class="input-group align-items-center">
-                                    <select
-                                        type="text"
-                                        class="form-control"
-                                        name="currency"
-                                        id="currency"
-                                        required
+                                <select
+                                    type="text"
+                                    class="form-control"
+                                    name="currency"
+                                    id="currency"
+                                    required
+                                >
+                                    <option selected disabled
+                                        >Select a currency</option
                                     >
-                                        <option selected disabled
-                                            >Select a currency</option
-                                        >
-                                        <option value="EUR">Euro (EUR)</option>
-                                        <option value="GBP"
-                                            >British pound (GBP)</option
-                                        >
-                                        <option value="USD"
-                                            >US dollar (USD)</option
-                                        >
-                                        <option value="CAD"
-                                            >Canadian dollar (CAD)</option
-                                        >
-                                        <option value="CHF"
-                                            >Swiss franc (CHF)</option
-                                        >
-                                        <option value="SEK"
-                                            >Swedish krone (SEK)</option
-                                        >
-                                        <option value="DKK"
-                                            >Danish krone (DKK)</option
-                                        >
-                                    </select>
-                                </div>
+                                    <option value="EUR">Euro (EUR)</option>
+                                    <option value="GBP"
+                                        >British pound (GBP)</option
+                                    >
+                                    <option value="USD">US dollar (USD)</option>
+                                    <option value="CAD"
+                                        >Canadian dollar (CAD)</option
+                                    >
+                                    <option value="CHF"
+                                        >Swiss franc (CHF)</option
+                                    >
+                                    <option value="SEK"
+                                        >Swedish krone (SEK)</option
+                                    >
+                                    <option value="DKK"
+                                        >Danish krone (DKK)</option
+                                    >
+                                </select>
                                 <small class="form-text text-muted"
                                     >It has to be the currency the traveler paid
                                     with.</small
@@ -348,9 +324,10 @@
                     <fieldset class="col-12" name="side-note">
                         <legend>Side notes</legend>
                         <div class="form-row">
-                            <div class="form-group col-12">
+                            <div class="col-12">
                                 <label for="side-notes"
                                     >Add a note to your voucher
+                                    <small>(optional)</small>
                                     <small
                                         class="text-muted"
                                         id="side-notes-maxlength-indicator"
