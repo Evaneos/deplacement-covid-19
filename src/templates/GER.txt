@@ -1,4 +1,4 @@
-%(agency_address_city)s, das %(creation_date)s
+%(agency_address_city)s, den %(creation_date)s
 
 %(agency_name)s
 %(agency_address_address1)s
@@ -8,22 +8,22 @@
 
 
 
-%(honorific_prefix)s %(full_name)s,
+Liebe(r) %(honorific_prefix)s %(full_name)s,
 
-Aufgrund der COVID-19 Pandemie war es Ihnen nicht möglich, Ihre Reise mit unserer lokalen Agentur durchzuführen. Dies tut uns sehr leid.
+Aufgrund der COVID-19 Pandemie und den einhergehenden Reisebeschränkungen konnten Sie Ihre Reise mit unserer lokalen Agentur leider nicht zum geplanten Zeitpunkt durchführen. Dies tut uns sehr leid, da wir wissen, wie sehr Sie sich auf Ihre Reise gefreut hatten. Die Details zu der geplanten Reise sind folgende: 
 
   - Reiseziel: %(destination)s
   - Ursprünglich geplante Abreise am %(arrival_date)s
 
 %(side_notes)s
 
-Sie profitieren daher unter den folgenden Bedingungen von einem Gutschein von unserer Agentur:
+Wir freuen uns jedoch, dass Sie sich entschieden haben, die Reise zu einem späteren Zeitpunkt nachzuholen! Damit Sie die Reiseplanung, sobald es möglich ist, einfach wieder aufnehmen können, stellen wir Ihnen hiermit einen Gutschein unserer Agentur aus:  
   - Name der lokalen Agentur: %(agency_name)s
-  - Aktennummer: %(dossier_id)d
-  - Gutschein-Betrag: %(amount)d %(currency)s
+  - Dossiernummer: %(dossier_id)d
+  - Gutscheinbetrag: %(amount)d %(currency)s
   - Gültig bis %(validity_date)s
 
-Dieser Gutschein ist nicht übertragbar, kann aber ein- oder mehrmals verwendet werden.
+Der Gutschein kann für eine oder mehrere Zahlungen mit unserer Agentur genutzt werden, ist jedoch nicht übertragbar.
 Die Daten sind in %(date_format)s angegeben.
 
-%(agency_name)s und unser gesamtes Team danken Ihnen für Ihr Vertrauen und hoffen auf einen möglichst baldigen Austausch mit Ihnen.
+%(agency_name)s und unser gesamtes Team danken Ihnen für Ihr Vertrauen und hoffen bald von Ihnen zu hören, um die Reiseplanung fortzusetzen.
