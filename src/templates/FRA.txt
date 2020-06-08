@@ -10,7 +10,7 @@
 
 %(honorific_prefix)s %(full_name)s,
 
-En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolé.
+En raison de l’épidémie de COVID-19, vous n’avez pas pu réaliser votre voyage avec notre agence locale et nous en sommes désolés.
 
   - Destination: %(destination)s
   - Départ initialement prévu le %(arrival_date)s
