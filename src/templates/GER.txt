@@ -27,3 +27,6 @@ Der Gutschein kann für eine oder mehrere Zahlungen mit unserer Agentur genutzt 
 Die Daten sind in %(date_format)s angegeben.
 
 %(agency_name)s und unser gesamtes Team danken Ihnen für Ihr Vertrauen und hoffen bald von Ihnen zu hören, um die Reiseplanung fortzusetzen.
+
+Auf ein baldiges Reisen!
+
