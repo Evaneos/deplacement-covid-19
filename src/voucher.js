@@ -233,7 +233,6 @@ function setValidityDate(input) {
 
     input.value = format(Math.max(validityDate, MIN_DATE), 'yyyy-MM-dd');
 }
-setValidityDate(document.getElementById('validity-date-display'));
 setValidityDate(document.getElementById('validity-date'));
 
 /**
